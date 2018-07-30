@@ -1,21 +1,39 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
+import PlayArea from './components/PlayArea/index'
+import Deck from './components/Deck'
 
 class App extends Component {
+  state = {
+    ages: {
+      age1: [
+        {
+          age: 1,
+          symbols: ['crown', 'crown', 'crown'],
+          name: 'pottery',
+          dogma: 'take money',
+        },
+      ],
+      age2: [
+        {
+          age: 2,
+          symbols: ['castle', 'castle', 'castle'],
+          name: 'the wheel',
+          dogma: 'take 2 cards',
+        },
+      ],
+    },
+  }
   render() {
+    const { ages } = this.state
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+      <PlayArea>
+        {Object.keys(ages).map(deck => (
+          <Deck key={`${deck}`} deck={ages[deck]} />
+        ))}
+      </PlayArea>
+    )
   }
 }
 
-export default App;
+export default App
